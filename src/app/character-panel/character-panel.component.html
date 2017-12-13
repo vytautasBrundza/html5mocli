@@ -1,0 +1,75 @@
+<!--Character panel-->
+<div id='character-panel' class='panel noselect' [hidden]="!this.ui.cOpen">  <!-- style='display: none'--> 
+	<div class='panel-title'>Character</div>
+	<p>id:  {{userDataService.userID}} </p>
+	<p>sid: {{userDataService.sid}}</p>
+	<br/>
+	<div *ngIf="userDataService.obj">
+		<p>exp: {{userDataService.obj.exp}} next lvl: {{userDataService.obj.nextlvl}}</p><br/>
+		<table class="stats">
+			<tr>
+				<th>Stats</th>
+			</tr>
+			<tr>
+				<td>STR: {{userDataService.obj.atrib[0]}}</td>
+				<td>INT: {{userDataService.obj.atrib[3]}}</td>
+			</tr>
+			<tr>
+				<td>DEX: {{userDataService.obj.atrib[1]}}</td>
+				<td>MEN: {{userDataService.obj.atrib[4]}}</td>
+			</tr>
+			<tr>
+				<td>CON: {{userDataService.obj.atrib[2]}}</td>
+				<td>WIT: {{userDataService.obj.atrib[5]}}</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="stats">
+			<tr>
+				<th>Physical</th>
+			</tr>
+			<tr>
+				<td>P Atk: {{userDataService.obj.stat.patk}} </td>
+				<td>P Def: {{userDataService.obj.stat.pdef}} </td>
+			</tr>
+			<tr>
+				<td>Atk. Spd: {{userDataService.obj.stat.atkspd}}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Crit Rate: {{userDataService.obj.stat.pcrt}}</td>
+				<td>Crit Dmg: {{userDataService.obj.stat.pcrtd}}</td>
+			</tr>
+			<tr>
+				<td>Accuracy: {{userDataService.obj.stat.pacc}}</td>
+				<td>Evasion: {{userDataService.obj.stat.pev}}</td>
+			</tr>
+			<tr>
+				<td>Shield Rate: {{userDataService.obj.stat.shr}}</td>
+				<td>Shield Def: {{userDataService.obj.stat.shd}}</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="stats">
+			<tr>
+				<th>Magic</th>
+			</tr>
+			<tr>
+				<td>M Atk: {{userDataService.obj.stat.matk}} </td>
+				<td>M Def: {{userDataService.obj.stat.mdef}} </td>
+			</tr>
+			<tr>
+				<td>Cast Spd: {{userDataService.obj.stat.cstspd}}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>M Crit Rate: {{userDataService.obj.stat.mcrt}}</td>
+				<td>M Crit Dmg: {{userDataService.obj.stat.mcrtd}}</td>
+			</tr>
+			<tr>
+				<td>M Chance: {{userDataService.obj.stat.macc}}</td>
+				<td>M Resist: {{userDataService.obj.stat.mev}}</td>
+			</tr>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+#login-screen {
+	height: 100vh;
+	width: 100%;
+	background-color: #fac16b; 
+}
+
+#login-panel, #register-panel {
+	margin: 0 auto;
+}
+
+.error-line {
+	margin-top: 5px;
+	padding: 5px;
+	background-color:#fd4;
+}
+
+@media screen and (min-width: 600px) {
+	#login-panel, #register-panel {
+		width: 70%;
+	}
+
+	#login-screen {
+		padding: 30vh 10%;
+	}
+}
+
+@media screen and (max-width: 599px) {
+}

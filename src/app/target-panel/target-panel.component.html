@@ -1,0 +1,56 @@
+<div id='target-panel' class='panel noselect' [hidden]="!this.ui.tOpen">  <!-- style='display: none'--> 
+	<div class='panel-title'>Target</div>
+	<div *ngIf="userDataService.tobj">
+
+		<p>exp:  {{userDataService.tobj.exp}} </p>
+		
+		<br/>
+		<table class="stats">
+			<tr>
+				<th>Physical</th>
+			</tr>
+			<tr>
+				<td>P Atk: {{userDataService.tobj.stat.patk}} </td>
+				<td>P Def: {{userDataService.tobj.stat.pdef}} </td>
+			</tr>
+			<tr>
+				<td>Atk. Spd: {{userDataService.tobj.stat.atkspd}}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Crit Rate: {{userDataService.tobj.stat.pcrt}}</td>
+				<td>Crit Dmg: {{userDataService.tobj.stat.pcrtd}}</td>
+			</tr>
+			<tr>
+				<td>Accuracy: {{userDataService.tobj.stat.pacc}}</td>
+				<td>Evasion: {{userDataService.tobj.stat.pev}}</td>
+			</tr>
+			<tr>
+				<td>Shield Rate: {{userDataService.tobj.stat.shr}}</td>
+				<td>Shield Def: {{userDataService.tobj.stat.shd}}</td>
+			</tr>
+		</table>
+		<br/>
+		<table class="stats">
+			<tr>
+				<th>Magic</th>
+			</tr>
+			<tr>
+				<td>M Atk: {{userDataService.tobj.stat.matk}} </td>
+				<td>M Def: {{userDataService.tobj.stat.mdef}} </td>
+			</tr>
+			<tr>
+				<td>Cast Spd: {{userDataService.tobj.stat.cstspd}}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>M Crit Rate: {{userDataService.tobj.stat.mcrt}}</td>
+				<td>M Crit Dmg: {{userDataService.tobj.stat.mcrtd}}</td>
+			</tr>
+			<tr>
+				<td>M Chance: {{userDataService.tobj.stat.macc}}</td>
+				<td>M Resist: {{userDataService.tobj.stat.mev}}</td>
+			</tr>
+		</table>
+	</div>
+</div>

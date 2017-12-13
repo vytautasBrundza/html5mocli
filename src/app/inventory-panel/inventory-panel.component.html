@@ -1,0 +1,90 @@
+<!--Inventory panel-->
+<div id='inventory-panel' class='panel noselect' [hidden]="!this.ui.iOpen">
+	<div class='panel-title'>Inventory</div>
+	<div id='loadout-container'>
+		<div class='relative flex'>
+			<ul id='loadout-armor' class='char-loadout' *ngIf="userDataService.obj">
+				<li *ngFor="let slot of userDataService.obj.loadout.slot  | slice:3:9; let i = index"
+					class="inv-slot li"
+					id='s_{{userDataService.userID}}_l_{{i+3}}'
+					[attr.data-loadout-type]='i+4'
+					[attr.data-slot-index]="i+3"
+					[dragula]='"cinv"'
+					attr.data-iid="{{slot.iid}}"
+					>
+					<img *ngIf="slot.count>0"
+					id="{{userDataService.userID}}_l_{{i+3}}"
+					title="{{slot.count}}"
+					src="assets/img/item/i_{{slot.iid}}.png"
+					[attr.data-itype]="engineService.data.item[slot.iid].iType"
+					[attr.data-isub]="engineService.data.item[slot.iid].iSub"
+					[attr.data-islot]="engineService.data.item[slot.iid].iSlot"
+					/>
+				</li>
+			</ul>
+			<div id='loadout-center' class='char-loadout'>
+
+			</div>
+			<ul id='loadout-extra' class='char-loadout' *ngIf="userDataService.obj">
+					<li *ngFor="let slot of userDataService.obj.loadout.slot  | slice:9:15; let i = index"
+					class="inv-slot li"
+					id='s_{{userDataService.userID}}_l_{{i+9}}'
+					[attr.data-loadout-type]='i+10'
+					[attr.data-slot-index]="i+9"
+					[dragula]='"cinv"'
+					attr.data-iid="{{slot.iid}}"
+					>
+					<img *ngIf="slot.count>0"
+					id="{{userDataService.userID}}_l_{{i+9}}"
+					title="{{slot.count}}"
+					src="assets/img/item/i_{{slot.iid}}.png"
+					[attr.data-itype]="engineService.data.item[slot.iid].iType"
+					[attr.data-isub]="engineService.data.item[slot.iid].iSub"
+					[attr.data-islot]="engineService.data.item[slot.iid].iSlot"
+					/>
+				</li>
+			</ul>
+		</div>
+		<div class='center'>
+			<ul id='loadout-weapon' class='char-loadout' *ngIf="userDataService.obj">
+					<li *ngFor="let slot of userDataService.obj.loadout.slot  | slice:0:3; let i = index"
+					class="inv-slot li"
+					id='s_{{userDataService.userID}}_l_{{i}}'
+					[attr.data-loadout-type]='i+1'
+					[attr.data-slot-index]="i"
+					[dragula]='"cinv"'
+					attr.data-iid="{{slot.iid}}"
+					>
+					<img *ngIf="slot.count>0"
+					id="{{userDataService.userID}}_l_{{i}}"
+					title="{{slot.count}}"
+					src="assets/img/item/i_{{slot.iid}}.png"
+					[attr.data-itype]="engineService.data.item[slot.iid].iType"
+					[attr.data-isub]="engineService.data.item[slot.iid].iSub"
+					[attr.data-islot]="engineService.data.item[slot.iid].iSlot"
+					/>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<ul id='inventory-slots' *ngIf="userDataService.obj">
+		<li *ngFor="let slot of userDataService.obj.inv.slot; let i = index"
+			class="inv-slot li"
+			id='s_{{userDataService.userID}}_i_{{i}}'
+			data-loadout-type='0'
+			attr.data-slot-index="{{i}}"
+			[dragula]='"cinv"'
+			attr.data-iid="{{slot.iid}}"
+			>
+			<img *ngIf="slot.count>0"
+			id="{{userDataService.userID}}_i_{{i}}"
+			title="{{slot.count}}"
+			src="assets/img/item/i_{{slot.iid}}.png"
+			[attr.data-itype]="engineService.data.item[slot.iid].iType"
+			[attr.data-isub]="engineService.data.item[slot.iid].iSub"
+			[attr.data-islot]="engineService.data.item[slot.iid].iSlot"
+			/>
+		</li>
+	</ul>
+	<div *ngIf="userDataService.obj">Money: {{userDataService.obj.money}}</div>
+</div>

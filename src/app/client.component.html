@@ -1,0 +1,3 @@
+<app-login *ngIf="!userDataService.created"></app-login>
+<app-main *ngIf="userDataService.created"></app-main>
+<app-chat></app-chat>

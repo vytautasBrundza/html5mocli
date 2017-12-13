@@ -1,0 +1,11 @@
+#editor-window {
+    position: fixed;
+	top:0;
+    left:0;
+    z-index: 1;
+    background-color: #FFF;
+}
+
+#editor-window td {
+    padding: 3px;
+}

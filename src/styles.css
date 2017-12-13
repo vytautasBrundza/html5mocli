@@ -1,0 +1,186 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing:
+	border-box;
+}
+
+html,body {
+	height: 100%;
+	font: 13px Helvetica, Arial;
+	height: 100vh;
+	overflow-y: hidden;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
+  
+  .relative {
+      position: relative;
+  }
+  
+  .flex {
+      display: flex;
+  }
+  
+  .center {
+      text-align: center;
+  }
+
+
+.ui-panel {
+    background-color: #faab6b; 
+}
+
+.ui-panel>h1 {
+    background-color: #f8964c;
+    padding: 1em;
+}
+
+.ui-panel .panel-body {
+    padding: 1em;
+}
+
+.ui-panel footer {
+    margin-top: 1em;
+}
+
+#debug-window {
+	position: fixed;
+	top:0;
+	right:0;
+	width: 200px;
+	color: #8c0000;
+	padding-left: 5px;
+	background-color: rgba(255,255,255,.7);
+}
+
+#target-box, #user-box {
+	background-color: #bfac74;
+	position: absolute;
+	top: 10px;
+	max-width: 200px;
+	width: 20%;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+#target-box {
+	left: 40%;
+}
+
+#user-box {
+	left: 10px;
+}
+
+#target-hp-frame, #user-hp-frame {
+	width: 100%;
+	margin-top: 5px;
+	background-color: orange;
+	padding: 2px;
+	border-radius: 3px;
+}
+
+#target-hp, #user-hp {
+	height: 16px;
+	width: 100%;
+	background-color: red;
+	border-radius: 2px;
+}
+
+#user-xp {
+	height: 16px;
+	width: 100%;
+	background-color: rgb(112, 0, 139);
+	border-radius: 2px;
+}
+
+.panel {
+	background-color: #bfac74;
+	padding: 5px;
+	position: absolute;
+	width: 240px;
+}
+
+.panel-title {
+	text-align: center;
+	font-weight: bold;
+}
+
+#character-panel {
+	top: 100px;
+	left: 0;
+}
+
+#target-panel {
+	top: 100px;
+	left: 250px;
+}
+
+#inventory-panel {
+	top: 100px;
+	right: 0;
+}
+
+#inventory-slots {
+	display: flex;
+	width: 214px;
+	margin: 10px auto;
+	flex-wrap: wrap;
+	border: solid #b59f73 2px;
+}
+
+.inv-slot {
+	width: 30px;
+	height: 30px;
+	list-style: none;
+	text-align: center;
+	border: solid #b59f73 2px;
+    background-color: #a9945d;
+    line-height: 30px;
+  	vertical-align: middle;
+}
+
+.char-loadout {
+	display: inline-flex;
+}
+
+#loadout-armor, #loadout-extra {
+	flex-direction: column;
+	position: relative;
+}
+
+#loadout-armor {
+}
+
+#loadout-extra {
+	right: 0;
+	top: 0;
+}
+
+#loadout-weapon {
+
+}
+
+#loadout-center {
+	flex-grow: 1;
+}
+
+.draggable {
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}

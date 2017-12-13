@@ -1,0 +1,33 @@
+<div id='editor-window' [hidden]="!this.ui.eOpen">
+	<table>
+		<th>Items</th>
+		<tr>
+			<td>id</td>
+			<td>name</td>
+			<td>iType</td>
+			<td>iSub</td>
+			<td>value</td>
+			<td>img</td>
+		</tr>
+		<tr *ngFor="let item of engineService.data.item; let i = index" >
+			<td contenteditable=true>{{item.id}}</td>
+			<td contenteditable=true>{{item.name}}</td>
+			<td contenteditable=true>{{item.iType}}</td>
+			<td contenteditable=true>{{item.iSub}}</td>
+			<td contenteditable=true>{{item.value}}</td>
+			<td contenteditable=true>{{item.img}}</td>
+		</tr>
+	</table>
+	<br/>
+	<table>
+		<th>Mobs</th>
+		<tr *ngFor="let mob of engineService.data.mob; let i = index">
+			<td contenteditable=true >{{mob.typeID}}</td>
+			<td contenteditable=true >{{mob.level}}</td>
+			<td contenteditable=true>{{mob.name}}</td>
+			<td contenteditable=true>{{mob.hp}}</td>
+		</tr>
+	</table>
+	<br/>
+	<button (click)="Export()">Export Data</button>
+</div>

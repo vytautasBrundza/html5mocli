@@ -1,0 +1,8 @@
+<div id='chat-box' class='noselect'>
+	<ul id="messages">
+		<li *ngFor="let message of messages">{{message.user}}: {{message.text}}</li>
+	</ul>
+	<div class="input-form">
+		<input id="m" autocomplete="off" [(ngModel)]="message" (keyup.enter)="sendMessage()"/><button (click)="sendMessage()">Send</button>
+	</div>
+</div>

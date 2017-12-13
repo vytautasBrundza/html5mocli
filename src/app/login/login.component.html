@@ -1,0 +1,50 @@
+<div id="login-screen">
+	<div id="login-panel" class="ui-panel" *ngIf="!userDataService.authenticated && state=='login'">
+		<h1>Login page</h1>
+		<div class="panel-body">
+			<div>
+				<input [(ngModel)]="userName" placeholder="user name" size="15" maxlength="15"/><br/>
+				<input [(ngModel)]="userPass" placeholder="password" size="8" maxlength="8" (keyup.enter)="Login()"/><br/>
+				<button (click)="Login()">Login</button>
+			</div>
+			<footer>
+				<a (click)="ToggleRegister('register')">Register</a>
+			</footer>
+			<div class="error-line" *ngIf="userDataService.lastError">{{userDataService.lastError}}</div>
+		</div>
+	</div>
+	<div id="register-panel" class="ui-panel" *ngIf="!userDataService.authenticated && state=='register'">
+		<h1>Register page</h1>
+		<div class="panel-body">
+			<div>
+				<input [(ngModel)]="userName" placeholder="user name" size="15" maxlength="15"/><br/>
+				<input [(ngModel)]="userPass" placeholder="password" size="8" maxlength="8" (keyup.enter)="Login()"/><br/>
+				<button (click)="Register()">Register</button>
+			</div>
+			<footer>
+				<a (click)="ToggleRegister('login')">Login</a>
+			</footer>
+			<div class="error-line" *ngIf="userDataService.lastError">{{userDataService.lastError}}</div>	
+		</div>
+	</div>
+	<div id="create-panel" class="ui-panel" *ngIf="userDataService.authenticated">
+		<h1>Fill User data</h1>
+		<div class="panel-body">
+			<div>
+				<select [(ngModel)]="selectedClass">
+					<option *ngFor="let c of userClass" [value]="c" >{{c}}</option>
+				</select>
+				<br/>			
+				<img [src]="selectedGender ? 'assets/img/ui/melee_class_f.png' : 'assets/img/ui/melee_class_m.jpg'"><br/>
+				<button (click)="selectedType = false">Fighter</button><button (click)="selectedType = true">Mage</button><br/>
+				<button (click)="selectedGender = false">Male</button><button (click)="selectedGender = true">Female</button>
+				<br/>
+				<button (click)="UserCreate()">Continue</button>
+			</div>
+			<footer>
+				<a (click)="ToggleRegister('login')">Login</a>
+			</footer>
+			<div class="error-line" *ngIf="userDataService.lastError">{{userDataService.lastError}}</div>
+		</div>
+	</div>
+</div>
