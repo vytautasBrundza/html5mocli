@@ -1,0 +1,49 @@
+
+#inventory-panel {
+	top: 100px;
+	right: 0;
+}
+
+#inventory-slots {
+	display: flex;
+	width: 214px;
+	margin: 10px auto;
+	flex-wrap: wrap;
+	border: solid #b59f73 2px;
+}
+
+.inv-slot {
+	width: 30px;
+	height: 30px;
+	list-style: none;
+	text-align: center;
+	border: inset #d8c08f 2px;
+    background-color: #a9945d;
+    line-height: 30px;
+	vertical-align: middle;	  
+}
+
+.char-loadout {
+	display: inline-flex;
+}
+
+#loadout-armor, #loadout-extra {
+	flex-direction: column;
+	position: relative;
+}
+
+#loadout-armor {
+}
+
+#loadout-extra {
+	right: 0;
+	top: 0;
+}
+
+#loadout-weapon {
+
+}
+
+#loadout-center {
+	flex-grow: 1;
+}
