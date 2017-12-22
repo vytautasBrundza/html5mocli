@@ -57,8 +57,8 @@ export class EngineService {
                                         ch.v.y = 0;
                                     } else {
                                         // normalize vector
-                                        ch.v.x = vect.x/length*ch.speed;
-                                        ch.v.y = vect.y/length*ch.speed;
+                                        ch.v.x = vect.x/length*ch.stat.spd;
+                                        ch.v.y = vect.y/length*ch.stat.spd;
                                         // update position
                                         ch.pos.x+=ch.v.x*this.dtime;
                                         ch.pos.y+=ch.v.y*this.dtime;
@@ -80,7 +80,7 @@ export class EngineService {
                                                 ch.drawData.v.y = 0;
                                                 ch.status = 'idle';
                                             } else {
-                                                var speed = (ddlength > 2)? ch.speed : ch.speed/4;
+                                                var speed = (ddlength > 2)? ch.stat.spd : ch.stat.spd/4;
                                                 // normalize vector
                                                 ch.drawData.v.x = vect.x/ddlength*speed;
                                                 ch.drawData.v.y = vect.y/ddlength*speed;

@@ -164,7 +164,7 @@ export class DataTransferService {
 			this.userDataService.tobj = this.h.objectFindByKey(this.engineService.data.obj, 'id', this.userDataService.targetID);
 	}
 
-	UpdateInv(JSONdata) {	
+	UpdateInv(JSONdata) {
 		var newdata = JSON.parse(JSONdata);
 		this.userDataService.obj.loadout = newdata.l;
 		this.userDataService.obj.inv = newdata.i;
