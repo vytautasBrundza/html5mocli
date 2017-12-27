@@ -14,7 +14,7 @@ export class SettingsService {
     offsetY = 0;
 
     cScrollSpeed = 0.1;
-    cursorsDir;
+    cursorsDir: string;
     
 
 	constructor() {

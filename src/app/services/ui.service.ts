@@ -11,6 +11,8 @@ export class UIService {
     eOpen = false;
     iOpen = false;
     tOpen = false;
+    dialog = new DialogO();
+    
 
     kbKey = {
 		esc : false,
@@ -25,21 +27,7 @@ export class UIService {
         t : false
 	}
 
-	// Object to store mouse data
-	mouse = {
-		left: false,
-		right: false,
-		pos: { x: 0, y: 0 },
-		coord: { x: 0, y: 0 },
-		over: [],
-		cursor: 0,
-		setCursor: function (newCur) {
-			if(newCur != this.cursor) {
-				this.cursor = newCur;
-				//$('#mainCanvas').css({'cursor': 'url('+cursorsDir+newCur+'.ico), default'});
-			}
-		}
-    };
+    mouse;
     
     constructor(private userDataService: UserDataService,
                 private engineService: EngineService,
@@ -47,6 +35,21 @@ export class UIService {
                 private dataTransferService: DataTransferService,
                 private h: HelperService) {
                     engineService.ui = this;
+                    	// Object to store mouse data
+                    this.mouse = {
+                        left: false,
+                        right: false,
+                        pos: { x: 0, y: 0 },
+                        coord: { x: 0, y: 0 },
+                        over: [],
+                        cursor: 0,
+                        setCursor: function (newCur) {
+                            if(newCur != this.cursor) {
+                                this.cursor = newCur;
+                                document.getElementById('mainCanvas').style.cursor = "url('"+settingsService.cursorsDir+newCur+".ico'), default";
+                            }
+                        }
+                    };
                 }
 
         KeyDown(code) {
@@ -158,6 +161,7 @@ export class UIService {
     
         // On mouse left click we get the coordinates of click and send this data to server
         MouseLeftClick() {
+            this.dialog.open = false;
             if(this.mouse.cursor!=0) {
                     var coord = {
                         x: this.mouse.pos.x - this.settingsService.offsetX,
@@ -192,6 +196,9 @@ export class UIService {
     
         // Placeholder for actions to happen on Escape key press
         EscapeKey() {
+            if(this.dialog.open) {
+                this.dialog.Close();
+            }
         }
 
         // Placeholder for actions to happen on C key press
@@ -221,5 +228,35 @@ export class UIService {
         TKey() {
             this.tOpen = !this.tOpen;
         }
-    
+
+        OpenDialog(data) {
+            console.log(data);
+            console.log(this.engineService.data);
+            var o = this.h.objectFindByKey(this.engineService.data.npc, 'id', data.typeID);
+            this.dialog.Start(o, data.action);
+        }
+}
+
+class DialogO {
+    open = false;
+    text = '';
+    tab = 'default';
+    Start = function(o, action) {
+        this.open = true;
+        switch(action) {
+            case 'trader':
+                this.dOpen = true;
+                this.text = o.textGreet[0];
+                this.tab = 'trade';
+                this.trade = o.sell;
+            case 'greet':
+                this.dOpen = true;
+                this.text = o.textGreet[0];
+                this.tab = 'default';
+        }
+    }
+    Close = function() {
+        this.open = false;
+    }
+
 }

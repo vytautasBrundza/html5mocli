@@ -20,6 +20,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { TargetInfoComponent } from './target-info/target-info.component';
 import { TargetPanelComponent } from './target-panel/target-panel.component';
 import { EditorWindowComponent } from './editor-window/editor-window.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
 	declarations: [	ClientAppComponent, 
@@ -33,7 +34,8 @@ import { EditorWindowComponent } from './editor-window/editor-window.component';
 					UserInfoComponent,
 					TargetInfoComponent,
 					TargetPanelComponent,
-					EditorWindowComponent],
+					EditorWindowComponent,
+					DialogComponent],
 	bootstrap: [ClientAppComponent],
 	imports: [	BrowserModule,
 				FormsModule,

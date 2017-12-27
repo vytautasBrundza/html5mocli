@@ -39,7 +39,8 @@ export class DrawingComponent implements OnInit {
 		}
 		var imgListO = [
 			'char.png',
-			'm_1.png', 'm_2.png', 'm_3.png', 'm_4.png'
+			'm_1.png', 'm_2.png', 'm_3.png', 'm_4.png',
+			'n_1.png'
 		];
 		for(var i = 0; i < imgListO.length; i++) {
 			this.imgListObj[imgListO[i]] = new Image();
@@ -124,6 +125,7 @@ export class DrawingComponent implements OnInit {
 					switch(o.type) {
 					case 'char':
 					case 'mob':
+					case 'npc':
 						var x = this.settings.offsetX;
 						var y = this.settings.offsetY;
 						if (o.type == 'char') {

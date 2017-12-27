@@ -107,6 +107,9 @@ export class EngineService {
                     case 'mob':
                         this.ui.mouse.setCursor(3);
                     break;
+                    case 'npc':
+                    this.ui.mouse.setCursor(2);
+                break;
                     default:
                         this.ui.mouse.setCursor(0);
                 }

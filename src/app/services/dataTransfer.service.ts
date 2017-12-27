@@ -9,7 +9,7 @@ import { HelperService } from '../services/helper.service';
 
 @Injectable()
 export class DataTransferService {
-	private url = 'http://localhost:5000';
+	private url = 'http://192.168.146.103:5000';
 	private socket;
 	public sesManager;
 
@@ -97,6 +97,10 @@ export class DataTransferService {
 				this.UpdateInv(data);
 			});
 
+			this.socket.on('npc_dlg', (data) => {
+				this.engineService.ui.OpenDialog(data);
+			});
+			
 			return () => {
 				this.socket.disconnect();
 			};
@@ -113,6 +117,7 @@ export class DataTransferService {
 		this.MapData(JSON.parse(data.mapdata));
 		this.ItemData(JSON.parse(data.itemdata));
 		this.MobData(JSON.parse(data.mobdata));
+		this.npcData(JSON.parse(data.npcdata));
 	}
 
 	// read obj data
@@ -133,9 +138,14 @@ export class DataTransferService {
 		this.engineService.data.item = data;
 	}
 
-	// read item data
+	// read mob data
 	private MobData(data) {
 		this.engineService.data.mob = data;
+	}
+
+	// read npc data
+	private npcData(data) {
+		this.engineService.data.npc = data;
 	}
 
 	// read update data

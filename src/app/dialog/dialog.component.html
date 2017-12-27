@@ -1,0 +1,44 @@
+<!--Inventory panel-->
+<div id='dialog-panel' class='panel noselect' *ngIf="this.ui.dialog.open">
+	
+	<!-- Tab links -->
+	<div class="tab">
+		<button class="tablinks" (click)="openTab('default')" [class.active]="ui.dialog.tab=='default'" >Hello</button>
+		<button class="tablinks" (click)="openTab('trade')"   [class.active]="ui.dialog.tab=='trade'" *ngIf="userDataService.tobj.classType=='trader'" >Trade</button>
+	</div>
+	  
+	  <!-- Tab content -->
+	<div id='dialog-default' class="tabcontent" [hidden]="ui.dialog.tab!='default'">
+		<div>{{this.ui.dialog.text}}</div>
+	</div>
+
+	<div id='dialog-trade' class="tabcontent" *ngIf="userDataService.tobj.classType=='trader'" [hidden]="ui.dialog.tab!='trade'">
+		<div>BUY</div>
+		<input type="number" min="1" max="10000" value="1" class="input_qty"/>
+		<ul id='buy-inventory-slots' *ngIf="userDataService.tobj.sell.length>0">
+			<li *ngFor="let item of userDataService.tobj.sell; let i = index" 
+				class="inv-slot li"
+				attr.data-iid="{{item}}"
+				(click)="buy(item, 1, userDataService.tobj.typeID)"
+			>
+				<img src="assets/img/item/i_{{item}}.png" />
+			</li>
+		</ul>
+		<div>SELL</div>
+		<input type="number" min="1" max="10000" value="1" class="input_qty"/>
+		<ul id='trade-inventory-slots' *ngIf="userDataService.obj">
+			<li *ngFor="let slot of userDataService.obj.inv.slot; let i = index" 
+				[hidden]="slot.count==0"
+				class="inv-slot li"
+				attr.data-iid="{{slot.iid}}"
+				(click)="sell(slot.iid, 1, userDataService.tobj.typeID)"
+			>
+				<img *ngIf="slot.count>0" 
+					title="{{slot.count}}" 
+					src="assets/img/item/i_{{slot.iid}}.png"
+				/>
+			</li>
+		</ul>
+	</div>
+	
+</div>
