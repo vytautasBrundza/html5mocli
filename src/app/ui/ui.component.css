@@ -1,0 +1,87 @@
+.ui-panel {
+    background-color: #faab6b; 
+}
+
+.ui-panel>h1 {
+    background-color: #f8964c;
+    padding: 1em;
+}
+
+.ui-panel .panel-body {
+    padding: 1em;
+}
+
+.ui-panel footer {
+    margin-top: 1em;
+}
+
+
+#target-box, #user-box {
+	background-color: #bfac74;
+	position: absolute;
+	top: 10px;
+	max-width: 200px;
+	width: 20%;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+#target-box {
+	left: 40%;
+}
+
+#user-box {
+	left: 10px;
+}
+
+#target-hp-frame, #user-hp-frame {
+	width: 100%;
+	margin-top: 5px;
+	background-color: orange;
+	padding: 2px;
+	border-radius: 3px;
+}
+
+#target-hp, #user-hp {
+	height: 16px;
+	width: 100%;
+	background-color: red;
+	border-radius: 2px;
+}
+
+#user-xp {
+	height: 16px;
+	width: 100%;
+	background-color: rgb(112, 0, 139);
+	border-radius: 2px;
+}
+
+.panel {
+	background-color: #bfac74;
+	padding: 5px;
+	position: absolute;
+	width: 240px;
+}
+
+.panel-title {
+	text-align: center;
+	font-weight: bold;
+}
+
+#character-panel {
+	top: 100px;
+	left: 0;
+}
+
+#target-panel {
+	top: 100px;
+	left: 250px;
+}
+
+
+.dlg-button {
+    padding: 5px;
+    background-color: #aa955c;
+    border-radius: 3px;
+    margin-right: 5px;
+}

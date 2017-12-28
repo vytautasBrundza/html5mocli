@@ -109,7 +109,7 @@ export class DataTransferService {
 	}
 
 	private ConData(JSONdata: any) {
-		//console.log(JSONdata);
+		console.log(JSONdata);
 		var data = JSONdata.data;
 		this.engineService.data = {};
 		this.engineService.data.obj = {};
@@ -118,6 +118,7 @@ export class DataTransferService {
 		this.ItemData(JSON.parse(data.itemdata));
 		this.MobData(JSON.parse(data.mobdata));
 		this.npcData(JSON.parse(data.npcdata));
+		this.questData(JSON.parse(data.questdata));
 	}
 
 	// read obj data
@@ -146,6 +147,11 @@ export class DataTransferService {
 	// read npc data
 	private npcData(data) {
 		this.engineService.data.npc = data;
+	}
+
+	// read quest data
+	private questData(data) {
+		this.engineService.data.quest = data;
 	}
 
 	// read update data

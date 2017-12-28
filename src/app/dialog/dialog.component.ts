@@ -16,20 +16,36 @@ export class DialogComponent implements OnInit {
 				private dataTransferService: DataTransferService,
 				private ui: UIService,
 				private engineService: EngineService) { }
+	
+	buyQty = 1;
+	sellQty = 1;
 
 	ngOnInit() {
 	}
 
-	buy(item, qty, from) {
-		this.dataTransferService.sendData('ui',{type:'buy', data:{iid:item, qty:qty, npc:from}});
+	buy(item, from) {
+		this.dataTransferService.sendData('ui',{type:'buy', data:{iid:item, qty:this.buyQty, npc:from}});
 	}
 
-	sell(item, qty, to) {
-		this.dataTransferService.sendData('ui',{type:'sell', data:{iid:item, qty:qty, npc:to}});
+	sell(item, to) {
+		this.dataTransferService.sendData('ui',{type:'sell', data:{iid:item, qty:this.sellQty, npc:to}});
 	}
 
 	openTab(tab) {
 		this.ui.dialog.tab = tab;
+		if(tab=='quest') {
+			this.ui.dialog.quest = 0;
+			this.ui.dialog.step = 0;
+		}
+	}
+
+	quest(id, step) {
+		this.ui.dialog.quest = id;
+		this.ui.dialog.step = step;
+	}
+
+	questAccept(id) {
+		this.dataTransferService.sendData('quest',{type:'accept', id:id});
 	}
 
 }

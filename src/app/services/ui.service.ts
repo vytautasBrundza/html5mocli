@@ -11,7 +11,9 @@ export class UIService {
     eOpen = false;
     iOpen = false;
     tOpen = false;
+    qOpen = false;
     dialog = new DialogO();
+    questPanel = {tab:"started"};
     
 
     kbKey = {
@@ -24,7 +26,9 @@ export class UIService {
         e : false,
 		i : false,
         m : false,
-        t : false
+        q : false,
+        t : false,
+        u : false
 	}
 
     mouse;
@@ -54,51 +58,59 @@ export class UIService {
 
         KeyDown(code) {
             switch(code) {
-            case 27:
-                // run function once per key press (if key was already pressed, do nothing)
-                if(this.kbKey.esc == false) {
-                    this.EscapeKey();
-                    this.kbKey.esc = true;
-                }
-                break;
-            case 37:
-                this.kbKey.left = true;
-                break;
-            case 38:
-                this.kbKey.up = true;
-                break;
-            case 39:
-                this.kbKey.right = true;
-                break;
-            case 40:
-                this.kbKey.down = true;
-                break;
-            case 67:
-                this.kbKey.c = true;
-                this.CKey();
-                break;
-            case 69:
-                if(this.kbKey.e == false) {
-                    this.EKey();
-                    this.kbKey.e = true;
-                }
-                break;
-            case 73:
-                if(this.kbKey.i == false) {
-                    this.IKey();
-                    this.kbKey.i = true;
-                }
-                break;
-            case 77:
-                if(this.kbKey.m == false) {
-                    this.MKey();
-                    this.kbKey.m = true;
-                }
-                break;
-            case 84:
-                this.kbKey.t = true;
-                this.TKey();
-                break;
+                case 27:
+                    // run function once per key press (if key was already pressed, do nothing)
+                    if(this.kbKey.esc == false) {
+                        this.EscapeKey();
+                        this.kbKey.esc = true;
+                    }
+                    break;
+                case 37:
+                    this.kbKey.left = true;
+                    break;
+                case 38:
+                    this.kbKey.up = true;
+                    break;
+                case 39:
+                    this.kbKey.right = true;
+                    break;
+                case 40:
+                    this.kbKey.down = true;
+                    break;
+                case 67:
+                    this.kbKey.c = true;
+                    this.CKey();
+                    break;
+                case 69:
+                    if(this.kbKey.e == false) {
+                        this.EKey();
+                        this.kbKey.e = true;
+                    }
+                    break;
+                case 73:
+                    if(this.kbKey.i == false) {
+                        this.IKey();
+                        this.kbKey.i = true;
+                    }
+                    break;
+                case 77:
+                    if(this.kbKey.m == false) {
+                        this.MKey();
+                        this.kbKey.m = true;
+                    }
+                    break;
+                case 81:
+                    this.kbKey.q = true;
+                    this.QKey();
+                    break;
+                case 84:
+                    this.kbKey.t = true;
+                    this.TKey();
+                    break;
+                case 85:
+                    this.kbKey.u = true;
+                    this.UKey();
+                    break;
             }
         }
     
@@ -131,8 +143,14 @@ export class UIService {
             case 77:
                 this.kbKey.m = false;
                 break;
+            case 81:
+                this.kbKey.q = false;
+                break;
             case 84:
                 this.kbKey.t = false;
+                break;
+            case 85:
+                this.kbKey.u = false;
                 break;
             }
         }
@@ -224,9 +242,18 @@ export class UIService {
                 }
         }
 
-        // Placeholder for actions to happen on C key press
+        // Placeholder for actions to happen on Q key press
+        QKey() {
+            this.qOpen = !this.qOpen;
+        }
+
+        // Placeholder for actions to happen on T key press
         TKey() {
             this.tOpen = !this.tOpen;
+        }
+
+        // Placeholder for actions to happen on U key press
+        UKey() {
         }
 
         OpenDialog(data) {
@@ -241,6 +268,8 @@ class DialogO {
     open = false;
     text = '';
     tab = 'default';
+    quest = 0;
+    step = 0;
     Start = function(o, action) {
         this.open = true;
         switch(action) {

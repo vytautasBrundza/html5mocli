@@ -30,7 +30,7 @@
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 8px 16px;
     background-color: #c38f40;
     transition: 0.3s;
 }
@@ -44,6 +44,18 @@
     padding: 6px 12px;
 }
 
-input.input_qty {
+input.input-qty {
     width: 4.5em;
+}
+
+.accept {
+	color: #006400;
+}
+
+.decline {
+	color: #640000;
+}
+
+.dlg-buttons {
+	margin-top: 20px;
 }

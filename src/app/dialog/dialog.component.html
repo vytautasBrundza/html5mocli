@@ -1,37 +1,38 @@
-<!--Inventory panel-->
+<!--Dialog panel-->
 <div id='dialog-panel' class='panel noselect' *ngIf="this.ui.dialog.open">
 	
 	<!-- Tab links -->
 	<div class="tab">
 		<button class="tablinks" (click)="openTab('default')" [class.active]="ui.dialog.tab=='default'" >Hello</button>
 		<button class="tablinks" (click)="openTab('trade')"   [class.active]="ui.dialog.tab=='trade'" *ngIf="userDataService.tobj.classType=='trader'" >Trade</button>
+		<button class="tablinks" (click)="openTab('quest')"   [class.active]="ui.dialog.tab=='quest'" *ngIf="userDataService.tobj.quests.length>0" >Quest</button>
 	</div>
 	  
-	  <!-- Tab content -->
+	<!-- Tab content -->
 	<div id='dialog-default' class="tabcontent" [hidden]="ui.dialog.tab!='default'">
 		<div>{{this.ui.dialog.text}}</div>
 	</div>
 
 	<div id='dialog-trade' class="tabcontent" *ngIf="userDataService.tobj.classType=='trader'" [hidden]="ui.dialog.tab!='trade'">
 		<div>BUY</div>
-		<input type="number" min="1" max="10000" value="1" class="input_qty"/>
+		<input [(ngModel)]="buyQty" type="number" min="1" max="10000" class="input-qty"/>
 		<ul id='buy-inventory-slots' *ngIf="userDataService.tobj.sell.length>0">
 			<li *ngFor="let item of userDataService.tobj.sell; let i = index" 
 				class="inv-slot li"
 				attr.data-iid="{{item}}"
-				(click)="buy(item, 1, userDataService.tobj.typeID)"
+				(click)="buy(item, userDataService.tobj.typeID)"
 			>
 				<img src="assets/img/item/i_{{item}}.png" />
 			</li>
 		</ul>
 		<div>SELL</div>
-		<input type="number" min="1" max="10000" value="1" class="input_qty"/>
+		<input [(ngModel)]="sellQty" type="number" min="1" max="10000" class="input-qty"/>
 		<ul id='trade-inventory-slots' *ngIf="userDataService.obj">
 			<li *ngFor="let slot of userDataService.obj.inv.slot; let i = index" 
 				[hidden]="slot.count==0"
 				class="inv-slot li"
 				attr.data-iid="{{slot.iid}}"
-				(click)="sell(slot.iid, 1, userDataService.tobj.typeID)"
+				(click)="sell(slot.iid, userDataService.tobj.typeID)"
 			>
 				<img *ngIf="slot.count>0" 
 					title="{{slot.count}}" 
@@ -39,6 +40,24 @@
 				/>
 			</li>
 		</ul>
+	</div>
+
+	<div id='dialog-quest' class="tabcontent" [hidden]="ui.dialog.tab!='quest'">
+		<div *ngIf="this.ui.dialog.quest == 0">
+			<li *ngFor="let q of userDataService.tobj.quests; let i = index" 
+				(click)="quest(q, 1)"
+			>
+				{{this.engineService.data.quest[q].name}}
+			</li>
+		</div>
+		<div *ngIf="this.ui.dialog.quest != 0">
+			<p>{{this.engineService.data.quest[this.ui.dialog.quest].textDetails}}</p>
+			<div class="dlg-buttons">
+				<span class="dlg-button accept" (click)="questAccept(this.ui.dialog.quest)">Accept</span>
+				<span class=" dlg-button decline" (click)="quest(0,0)">Decline</span>
+			</div>
+			
+		</div>
 	</div>
 	
 </div>

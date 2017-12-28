@@ -21,6 +21,9 @@ import { TargetInfoComponent } from './target-info/target-info.component';
 import { TargetPanelComponent } from './target-panel/target-panel.component';
 import { EditorWindowComponent } from './editor-window/editor-window.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { QuestPanelComponent } from './quest-panel/quest-panel.component';
+
+import { QuestFilterPipe } from './filters/quest-status.pipe';
 
 @NgModule({
 	declarations: [	ClientAppComponent, 
@@ -35,7 +38,9 @@ import { DialogComponent } from './dialog/dialog.component';
 					TargetInfoComponent,
 					TargetPanelComponent,
 					EditorWindowComponent,
-					DialogComponent],
+					DialogComponent,
+					QuestPanelComponent,
+					QuestFilterPipe],
 	bootstrap: [ClientAppComponent],
 	imports: [	BrowserModule,
 				FormsModule,
