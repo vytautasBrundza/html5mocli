@@ -14,7 +14,8 @@ export class UIService {
     qOpen = false;
     dialog = new DialogO();
     questPanel = {tab:"started"};
-    
+    confirmPanel = new ConfirmO();
+
 
     kbKey = {
 		esc : false,
@@ -193,7 +194,8 @@ export class UIService {
                         } else {
                             if(this.userDataService.targetID == this.mouse.over[0].id)
                             {
-                                this.dataTransferService.sendData('ui', {type:'mclo', data:this.mouse.over[0].id});
+                                if(this.userDataService.obj.action != "dead")
+                                    this.dataTransferService.sendData('ui', {type:'mclo', data:this.mouse.over[0].id});
                             } else {
                                 this.userDataService.tobj = this.h.objectFindByKey(this.engineService.data.obj, 'id', this.mouse.over[0].id);
                                 this.userDataService.targetID = this.mouse.over[0].id;
@@ -203,7 +205,8 @@ export class UIService {
                         this.userDataService.targetID = null;
                         this.userDataService.tobj = null;
                         // We send ui (user interface) data which contains the more precise type mcl (mouse click left) and the coordinates
-                        this.dataTransferService.sendData('ui', {type:'mcl', data:coord});
+                        if(this.userDataService.obj.action != "dead")
+                            this.dataTransferService.sendData('ui', {type:'mcl', data:coord});
                     }
             }
         }
@@ -278,14 +281,50 @@ class DialogO {
                 this.text = o.textGreet[0];
                 this.tab = 'trade';
                 this.trade = o.sell;
+                break;
             case 'greet':
                 this.dOpen = true;
                 this.text = o.textGreet[0];
                 this.tab = 'default';
+                break;
         }
     }
     Close = function() {
         this.open = false;
     }
 
+}
+
+class ConfirmO {
+    open = false;
+    text = '';
+    answer = 0;
+    decline = false;
+    cancel = false;
+    Request = function(text, decline, cancel) {
+        this.open = true;
+        this.text = text;
+        this.decline = decline;
+        this.cancel = cancel;
+    }
+    Accept = function() {
+        this.open = false;
+        this.answer = 3;
+    }
+    Decline = function() {
+        this.open = false;
+        this.answer = 2;
+    }
+    Cancel = function() {
+        this.open = false;
+        this.answer = 1;
+    }
+    ReadAnswer = function() {
+        var a = this.answer;
+        if(this.answer != 0) {
+            this.text = '';
+            this.answer = 0;
+        }
+        return a;
+    }
 }

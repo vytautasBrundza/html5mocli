@@ -175,9 +175,21 @@ export class DataTransferService {
 		}
 		this.engineService.data.obj = objn;
 
-		this.userDataService.obj = this.h.objectFindByKey(this.engineService.data.obj, 'id', this.userDataService.userID);
-		if(this.userDataService.targetID>0)
-			this.userDataService.tobj = this.h.objectFindByKey(this.engineService.data.obj, 'id', this.userDataService.targetID);
+		if(this.userDataService.userID) {
+			this.userDataService.obj = this.h.objectFindByKey(this.engineService.data.obj, 'id', this.userDataService.userID);
+			
+			if(this.userDataService.targetID>0)
+				this.userDataService.tobj = this.h.objectFindByKey(this.engineService.data.obj, 'id', this.userDataService.targetID);
+			if(this.userDataService.obj.action=='dead' && !this.engineService.ui.confirmPanel.open) {
+				var a = this.engineService.ui.confirmPanel.ReadAnswer();
+				if (a==0) {
+					this.engineService.ui.confirmPanel.Request("Respawn?", false, false);
+				} else if (a==3) {
+					this.sendData('ui',{type:'respawn'});
+				}
+				
+			}
+		}
 	}
 
 	UpdateInv(JSONdata) {

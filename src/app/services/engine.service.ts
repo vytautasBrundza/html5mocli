@@ -39,7 +39,7 @@ export class EngineService {
                             this.ui.mouse.over.push(this.data.obj[i]);
                         }
                         switch(this.data.obj[i].type) {
-                            case 'char':
+                            case 'user':
                                 var ch = this.data.obj[i];
                                 var tmppos;
                                 if(ch.path.length>1)
@@ -101,7 +101,7 @@ export class EngineService {
             if(this.ui.mouse.over.length > 0) {
                 var obj = this.h.objectFindByKey(this.data.obj, 'id', this.ui.mouse.over[this.ui.mouse.over.length-1].id);
                 switch(obj.type) {
-                    case 'char':
+                    case 'user':
                         this.ui.mouse.setCursor(2);
                     break;
                     case 'mob':

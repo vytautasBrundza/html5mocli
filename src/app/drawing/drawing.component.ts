@@ -123,12 +123,12 @@ export class DrawingComponent implements OnInit {
 				var o = this.engineService.data.obj[i];
 				if(o) {
 					switch(o.type) {
-					case 'char':
+					case 'user':
 					case 'mob':
 					case 'npc':
 						var x = this.settings.offsetX;
 						var y = this.settings.offsetY;
-						if (o.type == 'char') {
+						if (o.type == 'user') {
 							if(o.action == 'move' || o.action == 'follow'){
 								if(o.path.length>1) {
 									for(var j = 0;j<o.path.length;j++) { this.context.drawImage(this.imgListMap['flag.png'], o.path[j][0]*64+32+this.settings.offsetX-10, o.path[j][1]*64+32+this.settings.offsetY-20, 20,20); }

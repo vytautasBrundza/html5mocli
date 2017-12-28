@@ -1,0 +1,9 @@
+<!--Quest panel-->
+<div id='confirm-panel' class='panel noselect' *ngIf="this.ui.confirmPanel.open">	
+	<p>{{this.ui.confirmPanel.text}}</p>
+	<div class="dlg-buttons">
+		<span class="dlg-button accept" (click)="this.ui.confirmPanel.Accept()">Accept</span>
+		<span class=" dlg-button decline" (click)="this.ui.confirmPanel.Decline()" *ngIf="this.ui.confirmPanel.decline">Decline</span>
+		<span class=" dlg-button" (click)="Cancel()" *ngIf="this.ui.confirmPanel.cancel">Cancel</span>
+	</div>
+</div>
