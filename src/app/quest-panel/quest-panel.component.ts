@@ -24,4 +24,8 @@ export class QuestPanelComponent implements OnInit {
 		this.ui.questPanel.tab = tab;
 	}
 
+	cancelQuest(id) {
+		this.dataTransferService.sendData('quest',{type:'cancel', id:id});
+	}
+
 }

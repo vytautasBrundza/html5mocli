@@ -5,15 +5,14 @@
 	<!-- Filter links -->
 	<div class="tab">
 		<button class="tablinks" (click)="openTab('all')"	   [class.active]="ui.questPanel.tab=='all'">All</button>
-		<button class="tablinks" (click)="openTab('started')"  [class.active]="ui.questPanel.tab=='active'">Active</button>
+		<button class="tablinks" (click)="openTab('started')"  [class.active]="ui.questPanel.tab=='started'">Active</button>
 		<button class="tablinks" (click)="openTab('finished')" [class.active]="ui.questPanel.tab=='finished'">Finished</button>
 	</div>
 
 	<!-- Tab content -->
-	<div id='quest-all' class="tabcontent">
-		<li *ngFor="let q of userDataService.obj.quest | queststatus:ui.questPanel.tab; let i = index " 
-		>
-			{{this.engineService.data.quest[q.id].name}}
+	<div id="quest-all" class="tabcontent">
+		<li class="questList" *ngFor="let q of userDataService.obj.quest | queststatus:ui.questPanel.tab; let i = index ">
+			<span>{{this.engineService.data.quest[q.id].name}}</span><span class="decline" (click)="cancelQuest(q.id)" >X</span>
 		</li>
 	</div>
 
