@@ -9,7 +9,7 @@ import { HelperService } from '../services/helper.service';
 
 @Injectable()
 export class DataTransferService {
-	private url = 'http://192.168.146.103:5000';
+	private url = 'http://192.168.146.105:5000';
 	private socket;
 	public sesManager;
 
@@ -51,6 +51,24 @@ export class DataTransferService {
 			this.socket = io(this.url);
 			this.socket.on('message', (data) => {
 				observer.next(data);
+			});
+			
+			this.socket.on('disconnect', () => {
+				this.engineService.connected = false;
+				this.engineService.connectionLost = true;
+				this.userDataService.authenticated = false;
+			});
+
+			this.socket.on('server-handshake', (JSONdata) => {
+				if(JSONdata.appVersion!='') {
+					this.engineService.connected = true;
+					this.engineService.app.appName = JSONdata.appName;
+					this.engineService.app.appSubName = JSONdata.appSubName;
+					this.engineService.app.appVersion = JSONdata.appVersion;
+				} else {
+					console.log(JSONdata.error);
+				}
+				this.userDataService.lastError = JSONdata.error;	
 			});
 
 			this.socket.on('login-confirm', (JSONdata) => {

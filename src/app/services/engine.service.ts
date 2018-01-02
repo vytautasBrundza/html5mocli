@@ -9,12 +9,19 @@ import { UIService } from '../services/ui.service';
 export class EngineService {
     running = false;
     miniMapEnabled = false;
+    connected = false;
+    connectionLost = false;
 
     lastupdate = Date.now();
 	dtime = 0;
     data: any;
     map: any;
     miniMap: any;
+    app = {
+        appName : '',
+        appSubName: '',
+        appVersion: ''
+    };
 
     ui: UIService;
 

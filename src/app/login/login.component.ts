@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DataTransferService } from '../services/dataTransfer.service';
 import { UserDataService } from '../services/userData.service';
+import { EngineService } from '../services/engine.service';
 
 @Component({
 	selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
 	error = '';
 	
 	constructor(private dataTransferService: DataTransferService,
+				private engineService: EngineService,
 				private userDataService: UserDataService) { }
 
 	Login() {
