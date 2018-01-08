@@ -31,6 +31,11 @@ export class DialogComponent implements OnInit {
 		this.dataTransferService.sendData('ui',{type:'sell', data:{iid:item, qty:this.sellQty, npc:to}});
 	}
 
+	portal(p) {
+		console.log('Use portal to ' + this.engineService.data.instance[p].name);
+		this.dataTransferService.sendData('ui',{type:'portal', data:{iid:p}});
+	}
+
 	openTab(tab) {
 		this.ui.dialog.tab = tab;
 		if(tab=='quest') {

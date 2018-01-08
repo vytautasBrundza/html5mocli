@@ -1,0 +1,12 @@
+<div id='engine-info'>
+    <div>{{engineService.data.instance[engineService.instance].name}}</div>
+    <div style="display:none">
+        <div>{{userDataService.userID}}</div>
+        <li *ngFor="let ins of engineService.data.RTinstance; let i = index ">
+            <h2>{{ins.instid}} {{ins.instname}} {{ins.instrun}} {{ins.instom}}</h2>
+            <p *ngFor="let obj of engineService.data.RTinstance[i].objectData; let j = index ">
+                {{obj.id}} {{obj.name}} {{obj.type}} {{obj.action}}
+            </p>
+        </li>
+    </div>
+</div>

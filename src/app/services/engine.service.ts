@@ -11,6 +11,8 @@ export class EngineService {
     miniMapEnabled = false;
     connected = false;
     connectionLost = false;
+    dataReceived = false;
+    instance = 0;
 
     lastupdate = Date.now();
 	dtime = 0;

@@ -260,8 +260,8 @@ export class UIService {
         }
 
         OpenDialog(data) {
-            console.log(data);
-            console.log(this.engineService.data);
+            //console.log(data);
+            //console.log(this.engineService.data);
             var o = this.h.objectFindByKey(this.engineService.data.npc, 'id', data.typeID);
             this.dialog.Start(o, data.action);
         }
@@ -281,6 +281,11 @@ class DialogO {
                 this.text = o.textGreet[0];
                 this.tab = 'trade';
                 this.trade = o.sell;
+                break;
+            case 'portal':
+                this.dOpen = true;
+                this.text = o.textGreet[0];
+                this.tab = 'portal';
                 break;
             case 'greet':
                 this.dOpen = true;

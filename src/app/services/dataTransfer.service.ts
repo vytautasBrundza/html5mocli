@@ -79,12 +79,25 @@ export class DataTransferService {
 					this.userDataService.sid = JSONdata.sid;
 					this.userDataService.created = JSONdata.created;
 					this.engineService.running = true;
+					this.engineService.instance = JSONdata.instance;
 					this.ConData(JSONdata);
 				} else {
 					console.log(JSONdata.data.error);
 				}
 				this.userDataService.lastError = JSONdata.data.error;
-				
+			});
+
+			this.socket.on('instance-data', (JSONdata) => {
+				if(JSONdata.id>=0) {
+					console.log('instance-data received!');
+					console.log(JSONdata);
+					this.userDataService.userID = JSONdata.id;
+					this.engineService.instance = JSONdata.instance;
+					this.InstanceData(JSONdata);
+				} else {
+					console.log(JSONdata.data.error);
+				}
+				this.userDataService.lastError = JSONdata.data.error;
 			});
 
 			this.socket.on('register-confirm', (JSONdata) => {
@@ -103,6 +116,7 @@ export class DataTransferService {
 				this.userDataService.created = true;
 				this.engineService.running = true;
 				this.userDataService.userID = JSONdata.id;
+				this.engineService.instance = JSONdata.instance;
 
 				this.ConData(JSONdata);
 			});
@@ -133,10 +147,18 @@ export class DataTransferService {
 		this.engineService.data.obj = {};
 		this.ObjData(JSON.parse(data.objdata));
 		this.MapData(JSON.parse(data.mapdata));
+		this.InstancesData(JSON.parse(data.instancedata));
 		this.ItemData(JSON.parse(data.itemdata));
 		this.MobData(JSON.parse(data.mobdata));
 		this.npcData(JSON.parse(data.npcdata));
 		this.questData(JSON.parse(data.questdata));
+		this.engineService.dataReceived = true;
+	}
+
+	private InstanceData(JSONdata: any) {
+		var data = JSONdata.data;
+		this.ObjData(JSON.parse(data.objdata));
+		this.MapData(JSON.parse(data.mapdata));
 	}
 
 	// read obj data
@@ -151,9 +173,13 @@ export class DataTransferService {
 		this.engineService.miniMapEnabled = false;
 	}
 
+	// read instance list data
+	private InstancesData(data) {
+		this.engineService.data.instance = data;
+	}
+
 	// read item data
 	private ItemData(data) {
-		this.engineService.data.item = data;
 		this.engineService.data.item = data;
 	}
 
@@ -174,13 +200,14 @@ export class DataTransferService {
 
 	// read update data
 	private UpdateData(JSONdata) {
+		if(this.engineService.dataReceived == false || JSONdata.instance != this.engineService.instance)
+			return;
+
 		//console.log(this.engineService.data);
 		var newdata = JSON.parse(JSONdata.data);
+		this.engineService.data.RTinstance = JSONdata.instData;
 		var objn = [];
 		
-		if(!this.engineService.data) this.engineService.data = {};
-		if(!this.engineService.data.obj) this.engineService.data.obj = {};
-
 		for(var i = 0; i < newdata.length; i++) {
 			var oldObj = this.h.objectFindByKey(this.engineService.data.obj, 'id', newdata[i].id);
 			if(newdata[i].status == 1) {
@@ -195,7 +222,6 @@ export class DataTransferService {
 
 		if(this.userDataService.userID) {
 			this.userDataService.obj = this.h.objectFindByKey(this.engineService.data.obj, 'id', this.userDataService.userID);
-			
 			if(this.userDataService.targetID>0)
 				this.userDataService.tobj = this.h.objectFindByKey(this.engineService.data.obj, 'id', this.userDataService.targetID);
 			if(this.userDataService.obj.action=='dead' && !this.engineService.ui.confirmPanel.open) {

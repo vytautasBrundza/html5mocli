@@ -25,6 +25,7 @@ import { QuestPanelComponent } from './quest-panel/quest-panel.component';
 
 import { QuestFilterPipe } from './filters/quest-status.pipe';
 import { ConfirmPanelComponent } from './confirm-panel/confirm-panel.component';
+import { ServerInfoComponent } from './server-info/server-info.component';
 
 @NgModule({
 	declarations: [	ClientAppComponent, 
@@ -42,7 +43,8 @@ import { ConfirmPanelComponent } from './confirm-panel/confirm-panel.component';
 					DialogComponent,
 					QuestPanelComponent,
 					QuestFilterPipe,
-					ConfirmPanelComponent],
+					ConfirmPanelComponent,
+					ServerInfoComponent],
 	bootstrap: [ClientAppComponent],
 	imports: [	BrowserModule,
 				FormsModule,
