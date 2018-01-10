@@ -1,12 +1,12 @@
 <!--Dialog panel-->
-<div id='dialog-panel' class='panel noselect' *ngIf="this.ui.dialog.open">
+<div id='dialog-panel' class='panel noselect' *ngIf="this.ui.dialog.open && userDataService.tobj">
 	
 	<!-- Tab links -->
 	<div class="tab">
 		<button class="tablinks" (click)="openTab('default')" [class.active]="ui.dialog.tab=='default'" >Hello</button>
 		<button class="tablinks" (click)="openTab('trade')"   [class.active]="ui.dialog.tab=='trade'" *ngIf="userDataService.tobj.classType=='trader'" >Trade</button>
-		<button class="tablinks" (click)="openTab('quest')"   [class.active]="ui.dialog.tab=='quest'" *ngIf="userDataService.tobj.quests.length>0" >Quest</button>
-		<button class="tablinks" (click)="openTab('portal')"  [class.active]="ui.dialog.tab=='portal'" *ngIf="userDataService.tobj.portalList.length>0" >Portal</button>
+		<button class="tablinks" (click)="openTab('quest')"   [class.active]="ui.dialog.tab=='quest'" *ngIf="userDataService.tobj.quests && userDataService.tobj.quests.length>0" >Quest</button>
+		<button class="tablinks" (click)="openTab('portal')"  [class.active]="ui.dialog.tab=='portal'" *ngIf="userDataService.tobj.portalList && userDataService.tobj.portalList.length>0" >Portal</button>
 	</div>
 	  
 	<!-- Tab content -->

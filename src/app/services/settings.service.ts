@@ -13,10 +13,9 @@ export class SettingsService {
     offsetX = 0;
     offsetY = 0;
 
-    cScrollSpeed = 0.1;
+    cScrollSpeed = 0.3;
     cursorsDir: string;
     
-
 	constructor() {
         if(window.innerWidth > 800) {
             this.cursorsDir = 'assets/img/cursors32/';

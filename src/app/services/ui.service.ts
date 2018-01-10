@@ -277,13 +277,13 @@ class DialogO {
     Start = function(o, action) {
         this.open = true;
         switch(action) {
-            case 'trader':
+            case 'trade':
                 this.dOpen = true;
                 this.text = o.textGreet[0];
                 this.tab = 'trade';
                 this.trade = o.sell;
                 break;
-            case 'portal':
+            case 'port':
                 this.dOpen = true;
                 this.text = o.textGreet[0];
                 this.tab = 'portal';
