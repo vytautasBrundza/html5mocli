@@ -7,6 +7,7 @@ export class UserDataService {
 	obj: any; // = {inv:{}, loadout:[]};
 	targetID : number;
 	tobj = null;
+	stunned = false;
 
 	constructor() {
 		this.authenticated = false;

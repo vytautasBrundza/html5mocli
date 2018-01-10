@@ -6,6 +6,7 @@ import { UserDataService } from '../services/userData.service';
 import { EngineService } from '../services/engine.service';
 import { SettingsService } from '../services/settings.service';
 import { HelperService } from '../services/helper.service';
+import { UIService } from '../services/ui.service';
 
 @Injectable()
 export class DataTransferService {
@@ -25,7 +26,18 @@ export class DataTransferService {
 	}
 
 	sendData(call, data) {
-		this.socket.emit(call, data);
+		if(call == 'ui')
+			if(this.userDataService.stunned)
+				return;
+		if(call == 'ui' && data.type == 'portal') {
+			this.userDataService.stunned = true;
+			this.engineService.ui.overlay.On('Teleporting');
+			setTimeout(function() {
+				this.socket.emit(call, data)
+			}.bind(this),1000);
+		} else {
+			this.socket.emit(call, data);
+		}
 	}
 
 	sendLogin(u, p) {
@@ -73,7 +85,6 @@ export class DataTransferService {
 
 			this.socket.on('login-confirm', (JSONdata) => {
 				if(JSONdata.id>=0) {
-					console.log('login success!');
 					this.userDataService.authenticated = true;
 					this.userDataService.userID = JSONdata.id;
 					this.userDataService.sid = JSONdata.sid;
@@ -89,11 +100,14 @@ export class DataTransferService {
 
 			this.socket.on('instance-data', (JSONdata) => {
 				if(JSONdata.id>=0) {
-					console.log('instance-data received!');
-					console.log(JSONdata);
 					this.userDataService.userID = JSONdata.id;
 					this.engineService.instance = JSONdata.instance;
 					this.InstanceData(JSONdata);
+					setTimeout(function() {
+						this.userDataService.stunned = false;
+						this.engineService.ui.overlay.Off();
+					}.bind(this),1000);
+					
 				} else {
 					console.log(JSONdata.data.error);
 				}
@@ -112,7 +126,6 @@ export class DataTransferService {
 			});
 
 			this.socket.on('create-confirm', (JSONdata) => {
-				console.log('user created!');
 				this.userDataService.created = true;
 				this.engineService.running = true;
 				this.userDataService.userID = JSONdata.id;
@@ -141,7 +154,7 @@ export class DataTransferService {
 	}
 
 	private ConData(JSONdata: any) {
-		console.log(JSONdata);
+		//console.log(JSONdata);
 		var data = JSONdata.data;
 		this.engineService.data = {};
 		this.engineService.data.obj = {};
@@ -231,7 +244,6 @@ export class DataTransferService {
 				} else if (a==3) {
 					this.sendData('ui',{type:'respawn'});
 				}
-				
 			}
 		}
 	}

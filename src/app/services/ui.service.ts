@@ -13,6 +13,7 @@ export class UIService {
     tOpen = false;
     qOpen = false;
     dialog = new DialogO();
+    overlay = new Overlay();
     questPanel = {tab:"started"};
     confirmPanel = new ConfirmO();
 
@@ -297,7 +298,6 @@ class DialogO {
     Close = function() {
         this.open = false;
     }
-
 }
 
 class ConfirmO {
@@ -331,5 +331,17 @@ class ConfirmO {
             this.answer = 0;
         }
         return a;
+    }
+  
+}
+
+class Overlay {
+    overlayText = '';
+    On(text) {
+        this.overlayText = text;
+        document.getElementById('overlay').style.opacity = '1';
+    }
+    Off() {
+        document.getElementById('overlay').style.opacity = '0';
     }
 }

@@ -32,7 +32,7 @@ export class DialogComponent implements OnInit {
 	}
 
 	portal(p) {
-		console.log('Use portal to ' + this.engineService.data.instance[p].name);
+		//console.log('Use portal to ' + this.engineService.data.instance[p].name);
 		this.dataTransferService.sendData('ui',{type:'portal', data:{iid:p}});
 	}
 
