@@ -31,7 +31,24 @@ export class DrawingComponent implements OnInit {
 		// load all the content required
 		var imgListM = [
 			'flag.png',
-			'tiles/grass-sparse.jpg', 'tiles/water-plain.jpg', 'tiles/cobblestone-regular.jpg', 'tiles/wall.jpg', 'tiles/grass-sparse-wall-top-bot.jpg',
+			"tiles/grass-sparse.jpg",
+			"tiles/cobblestone-regular.jpg",
+			"tiles/grass-sparse-cobblestone-left.jpg",
+			"tiles/grass-sparse-cobblestone-right.jpg",
+			"tiles/grass-sparse-cobblestone-top.jpg",
+			"tiles/grass-sparse-cobblestone-bottom.jpg",
+			"tiles/grass-sparse-cobblestone-bottom-left.jpg",
+			"tiles/grass-sparse-cobblestone-bottom-right.jpg",
+			"tiles/grass-sparse-cobblestone-top-left.jpg",
+			"tiles/grass-sparse-cobblestone-top-right.jpg",
+			"tiles/wall.jpg",
+			"tiles/grass-sparse-wall-top-bot.jpg",
+			"tiles/grass-sparse-wall-left-right.jpg",
+			"tiles/grass-sparse-wall-bot.jpg",
+			"tiles/grass-sparse-wall-left.jpg",
+			"tiles/grass-sparse-wall-right.jpg",
+			"tiles/grass-sparse-wall-top.jpg",
+			"tiles/water-plain.jpg"
 		];
 		for(var i = 0; i < imgListM.length; i++) {
 			this.imgListMap[imgListM[i]] = new Image();
@@ -75,6 +92,13 @@ export class DrawingComponent implements OnInit {
 		this.canvas.width  = window.innerWidth;
 		this.canvas.height = window.innerHeight-3;
 		this.DrawLoop();
+	}
+
+	Loadimages(list) {
+		for(var i = 0; i < list.length; i++) {
+			this.imgListMap[list[i]] = new Image();
+			this.imgListMap[list[i]].src = 'assets/img/'+list[i];
+		}
 	}
 
 	Draw() {
