@@ -31,7 +31,7 @@ export class DrawingComponent implements OnInit {
 		// load all the content required
 		var imgListM = [
 			'flag.png',
-			'tiles/grass-sparse.jpg', 'tiles/water-plain.jpg', 'tiles/cobblestone-regular.jpg'
+			'tiles/grass-sparse.jpg', 'tiles/water-plain.jpg', 'tiles/cobblestone-regular.jpg', 'tiles/wall.jpg', 'tiles/grass-sparse-wall-top-bot.jpg',
 		];
 		for(var i = 0; i < imgListM.length; i++) {
 			this.imgListMap[imgListM[i]] = new Image();
@@ -39,7 +39,7 @@ export class DrawingComponent implements OnInit {
 		}
 		var imgListO = [
 			'char.png',
-			'm_1.png', 'm_2.png', 'm_3.png', 'm_4.png',
+			'm_1.png', 'm_2.png', 'm_3.png', 'm_4.png', 'm_5.png',
 			'n_1.png', 'n_2.png'
 		];
 		for(var i = 0; i < imgListO.length; i++) {
